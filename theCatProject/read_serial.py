@@ -7,10 +7,11 @@ except getopt.GetoptError, err:
     print str(err);
     sys.exit(2);
 
-for o, a in opts;
-    if o == "-u", "--username"):
+for o, a in opts:
+    print o;
+    if (o == "-u", "--username"):
         user = a
-    elif o == "-p", "--password"):
+    elif (o == "-p", "--password"):
         passwd = a
     else:
         assert False, "Unhandled option"
@@ -31,22 +32,24 @@ try:
 except serial.SerialException:
 	print "no device connected - exiting"
 	sys.exit()
-
+count = 0;
 while (1):
     val = ser.read()
     if val == '1':
         print "inner flap open."
         cat_status = LEAVING;
         cats_in_house = cats_in_house - 1;
-        post_status = api.PostUpdate("Cat leaving house. There are now "+str(cats_in_house)+" cats in the house");
-        print post_status.text;
+#        post_status = api.PostUpdate("Cat leaving house. There are now "+str(cats_in_house)+" cats in the house");
+#        print post_status.text;
     
     if val == '2':
         print "outer flap open.";
         cat_status = ENTERING;
         cats_in_house = cats_in_house + 1;
-        post_status = api.PostUpdate("Cat entering house. There are now "+str(cats_in_house)+" cats in the house");
+        #post_status = api.PostUpdate("Cat flapused house. There are now "+str(cats_in_house)+" cats in the house");
+        post_status = api.PostUpdate("Cat flap used "+str(count)+" times today");
         print post_status.text;
+        count = count + 1;
 
     time.sleep(3); 
 
