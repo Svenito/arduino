@@ -1,26 +1,35 @@
 int pins[] = {1, 2, 3, 4, 5, 6};
-int col_size = 7;
+int col_size = 6;
+int row_size = 5;
+
+int A[] = {0, 0, 0, 1, 1, 1,  
+           0, 1, 1, 1, 0, 0,
+           1, 0, 0, 1, 0, 0,
+           0, 1, 1, 1, 0, 0,
+           0, 0, 0, 1, 1, 1};
 
 void setup() {
   //Serial.begin(9600);
   int loop;
-  for(loop = 1; loop < col_size; loop++) {
-    pinMode(loop, OUTPUT);
-    digitalWrite(loop, LOW);
+  for(loop = 0; loop < col_size; loop++) {
+    pinMode(pins[loop], OUTPUT);
+    digitalWrite(pins[loop], LOW);
   }
 }
 
 void loop() {
-  int loop;
-  for (loop = 1; loop < col_size; loop++) {
-    if (loop > 0) {
-      digitalWrite(loop-1, LOW);
+  int row, col;
+  
+  for (row = 0; row < row_size; row++) {
+    for (col = 0; col < col_size; col++) {
+      digitalWrite(pins[col], A[(6*row)+col]);
+      //delay(500);
     }
-    if (loop == 1) {
-      digitalWrite(6, LOW);
-    }
-    digitalWrite(loop, HIGH);
-    // Small delay before next loop
-    delay(500);
+    delay(80);
   }
+  for (col = 0; col < col_size; col++) {
+    digitalWrite(pins[col], LOW);
+    //delay(500);
+  }
+  delay(500);
 }
