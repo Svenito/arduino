@@ -23,13 +23,11 @@ void loop() {
   for (row = 0; row < row_size; row++) {
     for (col = 0; col < col_size; col++) {
       digitalWrite(pins[col], A[(6*row)+col]);
-      //delay(500);
     }
-    delay(80);
+    delay(3);
   }
   for (col = 0; col < col_size; col++) {
     digitalWrite(pins[col], LOW);
-    //delay(500);
   }
   delay(500);
 }
