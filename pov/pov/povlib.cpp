@@ -22,15 +22,26 @@ Pov::~Pov(){
         
 void Pov::print(char* string){
     int row, col;
+    int str_loop = 0;
 
-    for (row = 0; row < _row_size; row++) {
-        for (col = 0; col < _col_size; col++) {
-            digitalWrite(_pins[col], B[(6*row)+col]);
+    while(string[str_loop] != '\0') {
+        int char_value = (int)string[str_loop] - 65;
+
+        // Print the letter
+        for (row = 0; row < _row_size; row++) {
+            for (col = 0; col < _col_size; col++) {
+                digitalWrite(_pins[col], chars[char_value + ((6*row)+col)]);
+            }
+        delay(3);
         }
-    delay(3);
+
+        // Blank for kerning
+        for (col = 0; col < _col_size; col++) {
+            digitalWrite(_pins[col], LOW);
+        }
+        // Adjust this for kerning size
+        delay(200);
+
+        str_loop++;
     }
-    for (col = 0; col < _col_size; col++) {
-        digitalWrite(_pins[col], LOW);
-    }
-    delay(200);
 }
