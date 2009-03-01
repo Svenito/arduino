@@ -25,8 +25,8 @@ void Pov::print(char* string){
     int str_loop = 0;
 
     while(string[str_loop] != '\0') {
-        int char_value = (int)string[str_loop] - 65;
-
+        int char_value = ((int)string[str_loop] - 65) * (_row_size * _col_size);
+        
         // Print the letter
         for (row = 0; row < _row_size; row++) {
             for (col = 0; col < _col_size; col++) {
@@ -40,7 +40,7 @@ void Pov::print(char* string){
             digitalWrite(_pins[col], LOW);
         }
         // Adjust this for kerning size
-        delay(200);
+        delay(300);
 
         str_loop++;
     }

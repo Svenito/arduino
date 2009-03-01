@@ -3,34 +3,12 @@
 int pins[] = {1, 2, 3, 4, 5, 6};
 int col_size = 6;
 int row_size = 5;
-
-int C[] = {0, 0, 0, 1, 1, 1,  
-           0, 1, 1, 1, 0, 0,
-           1, 0, 0, 1, 0, 0,
-           0, 1, 1, 1, 0, 0,
-           0, 0, 0, 1, 1, 1};
+Pov pov;
 
 void setup() {
-  //Serial.begin(9600);
-/*  int loop;
-  for(loop = 0; loop < col_size; loop++) {
-    pinMode(pins[loop], OUTPUT);
-    digitalWrite(pins[loop], LOW);
-  }*/
-  Pov pov(pins, col_size, row_size);
+  pov.init(pins, col_size, row_size);
 }
 
 void loop() {
-  int row, col;
-  
-  for (row = 0; row < row_size; row++) {
-    for (col = 0; col < col_size; col++) {
-      digitalWrite(pins[col], C[(6*row)+col]);
-    }
-    delay(3);
-  }
-  for (col = 0; col < col_size; col++) {
-    digitalWrite(pins[col], LOW);
-  }
-  delay(500);
+  pov.print("ABCDE");  
 }
