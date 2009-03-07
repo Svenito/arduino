@@ -8,17 +8,16 @@ class Pov {
         int _col_size;
         int _row_size;
         int* _pins;
-        int _character[30];
-
-        void getCharacter(char character);
- 
+    
     public:
         Pov(){};
         void init(int pins[], int col_size, int _row_size);
         ~Pov();
         
-        void print(char* string);
+        void print(int* letter);
 
 };
+
+
 
 #endif
