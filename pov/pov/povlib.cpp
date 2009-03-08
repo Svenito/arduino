@@ -35,5 +35,5 @@ void Pov::print(int* letter){
         digitalWrite(_pins[col], LOW);
     }
     // Adjust this for kerning size
-    delay(300);
+    delay(6);
 }
