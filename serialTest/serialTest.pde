@@ -14,7 +14,7 @@ void setup()
  
 }
 
-void loop()                     // run over and over again
+void loop()
 {
   int incoming = 0;
   if (Serial.available()) {
@@ -22,9 +22,8 @@ void loop()                     // run over and over again
   }
   
   if (incoming =='1'){
-    //Serial.println("printing to VDIP");
-    Serial.print("DIR");
-    Serial.print(13, BYTE);
+    mySerial.print("DIR");
+    mySerial.print(13, BYTE);
     incoming = 0;
   }
   
