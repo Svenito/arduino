@@ -1,7 +1,7 @@
 
 #include <NewSoftSerial.h>
 
-NewSoftSerial mySerial(3, 2);
+NewSoftSerial mySerial(3, 4);
 
 void setup()  
 {
@@ -11,6 +11,7 @@ void setup()
   mySerial.begin(9600);
   mySerial.print("IPA");
   mySerial.print(13, BYTE);
+  Serial.println("Setupdone");
  
 }
 
